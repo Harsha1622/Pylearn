@@ -301,7 +301,7 @@ document.getElementById("quizCount").innerText = `Quizzes Attempted: ${userData.
 document.getElementById("avgScore").innerText = `Average Score: ${userData.avgScore}%`;
 document.getElementById("progressText").innerText = `${userData.course} – ${userData.progress}%`;
 document.getElementById("progressFill").style.width = userData.progress + "%";
-document.getElementById("navUserName").innerText = userData.name + " ▾";
+document.getElementById("navUserName").innerText = userData.name;
 
 /* ===== Badges ===== */
 const badgeBox = document.getElementById("badgesContainer");
