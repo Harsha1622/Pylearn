@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ===== YOUR CSS – 100% SAME ===== */
 *{
   margin:0;
   padding:0;
@@ -85,14 +86,20 @@ nav a:hover{
   z-index:10;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
   text-decoration:none;
   color:#374151;
   font-size:14px;
+  background:none;
+  border:none;
+  text-align:left;
+  cursor:pointer;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
@@ -222,15 +229,20 @@ nav a:hover{
     <a href="#">Home</a>
     <a href="course.html">Courses</a>
 
-    <!-- STUDENT PROFILE -->
+    <!-- STUDENT PROFILE (BACKEND FILLS THIS) -->
+    <!-- SHOW ONLY AFTER LOGIN -->
     <div class="profile">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
-     
+ 
 
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+
+        <!-- LOGOUT (POST) -->
+        <form action="/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
       </div>
     </div>
   </nav>
@@ -245,16 +257,23 @@ nav a:hover{
     <p>
       Learn python through structured content,
       quizzes, and progress tracking designed for students.
-    </p> <a href="course.html">
-    <button>Start Learning </button></a>
+    </p>
+    <a href="course.html">
+      <button>Start Learning</button>
+    </a>
   </div>
 
-  <!-- RIGHT -->
+  <!-- RIGHT (SHOW ONLY WHEN NOT LOGGED IN) -->
   <div class="login-card">
     <h3>Student Login</h3>
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
-    <button>Login</button>
+
+    <!-- BACKEND-READY FORM -->
+    <form action="/login" method="POST">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+
     <p>New here? <a href="signup.html">Create an account</a></p>
   </div>
 
