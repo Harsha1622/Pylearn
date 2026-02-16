@@ -218,12 +218,14 @@ section h4{
 
     <div class="profile" id="profileBtn">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Profile">
-      <span id="navUser">Student ▾</span>
+     
 
       <div class="profile-menu" id="profileMenu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="logout.html">Logout</a>
+        <form action="/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
       </div>
     </div>
   </nav>
