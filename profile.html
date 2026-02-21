@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SmartLearn | My Profile</title>
+<title>PyLearn | My Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +20,6 @@ body{
   color:#1f2937;
 }
 
-/* ================= HEADER ================= */
 header{
   background:white;
   padding:10px 20px;
@@ -47,27 +46,18 @@ nav a{
   font-weight:500;
 }
 
-nav a:hover{
-  color:#2563eb;
-}
-
-/* ===== PROFILE MENU ===== */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
-  
+  cursor:pointer;
 }
 
 .profile img{
   width:34px;
   height:34px;
   border-radius:50%;
-}
-
-.profile span{
-  font-weight:500;
 }
 
 .profile-menu{
@@ -79,26 +69,23 @@ nav a:hover{
   box-shadow:0 10px 25px rgba(0,0,0,0.15);
   width:180px;
   display:none;
-  
-  overflow:hidden;
+  flex-direction:column;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
+  cursor:pointer;
   font-size:14px;
 }
 
-.profile-menu a:hover{
-  background:#f3f4f6;
-}
-
-.profile-menu.show{
+.profile:hover .profile-menu{
   display:flex;
 }
 
-/* ================= MAIN ================= */
 main{
   max-width:900px;
   margin:50px auto;
@@ -108,7 +95,6 @@ main{
   box-shadow:0 18px 35px rgba(0,0,0,0.12);
 }
 
-/* PROFILE HEADER */
 .profile-header{
   display:flex;
   align-items:center;
@@ -122,194 +108,86 @@ main{
   border-radius:50%;
 }
 
-.profile-header h3{
-  font-size:24px;
-}
-
-.profile-header p{
-  color:#6b7280;
-  font-size:14px;
-}
-
-/* SECTION */
-section{
-  margin-top:30px;
-}
-
-section h4{
-  margin-bottom:15px;
-  color:#2563eb;
-  font-size:18px;
-}
-
-/* INFO GRID */
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
-
 .info-box{
   background:#f9fafb;
   padding:15px;
   border-radius:8px;
   font-size:14px;
 }
-
-/* PROGRESS */
-.progress-box{
-  background:#f9fafb;
-  padding:15px;
-  border-radius:8px;
-}
-
-.progress-bar{
-  height:8px;
-  background:#e5e7eb;
-  border-radius:5px;
-  overflow:hidden;
-  margin-top:6px;
-}
-
-.progress-fill{
-  height:100%;
-  background:#2563eb;
-  width:0;
-  transition:width 0.6s ease;
-}
-
-/* BADGES */
-.badges{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-.badge{
-  background:#eef2ff;
-  color:#2563eb;
-  padding:10px 14px;
-  border-radius:8px;
-  font-size:14px;
-}
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  main{
-    margin:30px 15px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
-  <h2>SmartLearn</h2>
+  <h2>PyLearn</h2>
 
   <nav>
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile" id="profileBtn">
-      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Profile">
-      
-
-      <div class="profile-menu" id="profileMenu">
+    <div class="profile" id="profileMenu">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
+      <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ================= PROFILE CONTENT ================= -->
 <main>
 
   <div class="profile-header">
-    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Profile Picture">
+    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
     <div>
-      <h3 id="studentName">Student Name</h3>
-      <p id="studentEmail">student@email.com</p>
+      <h3 id="studentName">Loading...</h3>
+      <p id="studentEmail"></p>
     </div>
   </div>
 
-  <section>
-    <h4>Student Information</h4>
-    <div class="info-grid">
-      <div class="info-box" id="courseName">Course Enrolled: C Programming</div>
-      <div class="info-box" id="topicsDone">Topics Completed: 0</div>
-      <div class="info-box" id="quizCount">Quizzes Attempted: 0</div>
-      <div class="info-box" id="avgScore">Average Score: 0%</div>
-    </div>
-  </section>
-
-  <section>
-    <h4>Course Progress</h4>
-    <div class="progress-box">
-      <span id="progressText">C Programming – 0%</span>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h4>Badges Earned</h4>
-    <div class="badges" id="badgesContainer">
-      <!-- badges inserted by JS -->
-    </div>
-  </section>
+  <div class="info-box" id="courseName">
+    Course: Python Programming
+  </div>
 
 </main>
 
 <script>
-/* ===== Profile Menu Toggle ===== */
-const profileBtn = document.getElementById("profileBtn");
-const profileMenu = document.getElementById("profileMenu");
+const API = "http://127.0.0.1:5000";
 
-profileBtn.addEventListener("click", () => {
-  profileMenu.classList.toggle("show");
-});
+/* SESSION CHECK + LOAD DATA */
+fetch(API + "/dashboard", {
+  credentials: "include"
+})
+.then(res => {
+  if(!res.ok){
+    window.location.href = "home.html";
+    return;
+  }
+  return res.json();
+})
+.then(data => {
+  document.getElementById("profileMenu").style.display = "flex";
 
-window.addEventListener("click", (e) => {
-  if (!profileBtn.contains(e.target)) {
-    profileMenu.classList.remove("show");
+  document.getElementById("studentEmail").innerText = data.email;
+
+  if(data.profile){
+    document.getElementById("studentName").innerText =
+      data.profile.full_name || "Student";
+
+    document.getElementById("courseName").innerText =
+      "Course: " + (data.profile.course || "Python Programming");
   }
 });
 
-/* ===== Simulated Dynamic Data ===== */
-const userData = {
-  name: "Harsha",
-  email: "harsha@student.com",
-  course: "C Programming",
-  topicsCompleted: 6,
-  quizzes: 3,
-  avgScore: 75,
-  progress: 60,
-  badges: ["Beginner", "Quiz Starter", "C Basics Completed"]
-};
-
-/* ===== Inject Data ===== */
-document.getElementById("studentName").innerText = userData.name;
-document.getElementById("studentEmail").innerText = userData.email;
-document.getElementById("courseName").innerText = `Course Enrolled: ${userData.course}`;
-document.getElementById("topicsDone").innerText = `Topics Completed: ${userData.topicsCompleted}`;
-document.getElementById("quizCount").innerText = `Quizzes Attempted: ${userData.quizzes}`;
-document.getElementById("avgScore").innerText = `Average Score: ${userData.avgScore}%`;
-document.getElementById("progressText").innerText = `${userData.course} – ${userData.progress}%`;
-document.getElementById("progressFill").style.width = userData.progress + "%";
-
-/* ===== Badges ===== */
-const badgeBox = document.getElementById("badgesContainer");
-userData.badges.forEach(badge => {
-  const div = document.createElement("div");
-  div.className = "badge";
-  div.innerText = badge;
-  badgeBox.appendChild(div);
-});
+/* LOGOUT */
+function logout(){
+  fetch(API + "/logout", {
+    method: "POST",
+    credentials: "include"
+  }).then(() => window.location.href = "home.html");
+}
 </script>
 
 </body>
