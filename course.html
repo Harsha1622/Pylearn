@@ -1,4 +1,4 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -16,18 +16,18 @@
 }
 
 body{
-  background:linear-gradient(135deg,#eef2ff,#f8fafc);
+  background:#f5f7fb;
   color:#1f2937;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   background:white;
   padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 6px 15px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
 
 header h2{
@@ -35,12 +35,11 @@ header h2{
   font-weight:700;
 }
 
-/* NAV */
 nav{
   display:flex;
   align-items:center;
   gap:25px;
- }
+}
 
 nav a{
   text-decoration:none;
@@ -52,9 +51,9 @@ nav a:hover{
   color:#2563eb;
 }
 
-/* ===== STUDENT PROFILE ===== */
+/* PROFILE */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
@@ -67,11 +66,6 @@ nav a:hover{
   border-radius:50%;
 }
 
-.profile span{
-  font-weight:500;
-}
-
-/* DROPDOWN */
 .profile-menu{
   position:absolute;
   top:45px;
@@ -82,27 +76,29 @@ nav a:hover{
   width:170px;
   display:none;
   flex-direction:column;
-  overflow:hidden;
-  z-index:10;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
-/* SHOW DROPDOWN */
 .profile:hover .profile-menu{
   display:flex;
 }
 
-/* ================= MAIN ================= */
+/* MAIN */
 .container{
   max-width:1000px;
   margin:60px auto;
@@ -115,7 +111,7 @@ nav a:hover{
   text-align:center;
 }
 
-/* COURSE CARDS */
+/* COURSE CARD */
 .course-list{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -160,19 +156,11 @@ nav a:hover{
 .course-card button:hover{
   background:#1e40af;
 }
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  header{
-    padding:18px 30px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <h2>PyLearn</h2>
 
@@ -180,39 +168,53 @@ nav a:hover{
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <!-- STUDENT PROFILE -->
-    <div class="profile">
-      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
-     
-
+    <div class="profile" id="profileMenu">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <form action="/logout" method="POST">
-          <button type="submit">Logout</button>
-        </form>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ================= CONTENT ================= -->
 <div class="container">
-  <h3>Course Contents</h3>
+  <h3>Python Course Contents</h3>
 
   <div class="course-list">
-
     <div class="course-card" onclick="location.href='Pythonsyllabus.html'">
-      <h4>Python Programming Language</h4>
+      <h4>Python Programming</h4>
       <p>
-        Master Python basics, data types, OOP concepts,
-        file handling, and real-world applications.
-      </p>   
+        Learn Python fundamentals, control structures,
+        functions, OOP concepts, and practical examples.
+      </p>
       <button>View Course</button>
     </div>
-
   </div>
 </div>
 
+<script>
+const API = "http://127.0.0.1:5000";
+
+/* SESSION CHECK (for profile menu only) */
+fetch(API + "/dashboard", {
+  credentials: "include"
+})
+.then(res => {
+  if(res.ok){
+    document.getElementById("profileMenu").style.display = "flex";
+  }
+});
+
+/* LOGOUT */
+function logout(){
+  fetch(API + "/logout", {
+    method: "POST",
+    credentials: "include"
+  }).then(() => window.location.href = "home.html");
+}
+</script>
+
 </body>
-</html>/
+</html>
