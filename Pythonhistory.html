@@ -1,11 +1,11 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>PyLearn | Introduction to Python</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,18 +16,18 @@
 }
 
 body{
-  background:#f3f6fb;
+  background:#f5f7fb;
   color:#1f2937;
 }
 
 /* ================= HEADER ================= */
 header{
   background:white;
-  padding:18px 20px;
+  padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
 
 header h2{
@@ -38,7 +38,7 @@ header h2{
 nav{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:25px;
 }
 
 nav a{
@@ -47,9 +47,13 @@ nav a{
   font-weight:500;
 }
 
-/* ===== STUDENT PROFILE ===== */
+nav a:hover{
+  color:#2563eb;
+}
+
+/* ===== PROFILE ===== */
 .profile{
-  display:flex;
+  display:none; /* visible only after login */
   align-items:center;
   gap:8px;
   position:relative;
@@ -62,11 +66,6 @@ nav a{
   border-radius:50%;
 }
 
-.profile span{
-  font-weight:500;
-}
-
-/* DROPDOWN */
 .profile-menu{
   position:absolute;
   top:45px;
@@ -77,22 +76,24 @@ nav a{
   width:170px;
   display:none;
   flex-direction:column;
-  overflow:hidden;
-  z-index:10;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
-/* SHOW DROPDOWN */
 .profile:hover .profile-menu{
   display:flex;
 }
@@ -137,12 +138,6 @@ pre{
   margin-top:10px;
 }
 
-code{
-  font-family:Consolas, monospace;
-  font-size:14px;
-}
-
-/* OUTPUT BOX */
 .output{
   background:#f9fafb;
   border:1px solid #d1d5db;
@@ -156,7 +151,6 @@ code{
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <h2>PyLearn</h2>
 
@@ -164,22 +158,17 @@ code{
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile">
+    <div class="profile" id="profileMenu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
-      
-
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <form action="/logout" method="POST">
-          <a type="submit">Logout</a>
-        </form>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ================= MAIN CONTENT ================= -->
 <div class="container">
 
   <h3>Introduction to Python</h3>
@@ -188,8 +177,7 @@ code{
     <h4>About Python Language</h4>
     <p>
       Python is a high-level, object-oriented, interpreted scripting language.
-      A script is a set of instructions given to the computer, and Python
-      executes these instructions line by line using an interpreter
+      It executes instructions line by line using an interpreter
       without the need for a compiler.
     </p>
   </div>
@@ -197,81 +185,77 @@ code{
   <div class="section">
     <h4>Programming Style</h4>
     <p>
-      Python is a combination of both
+      Python supports both
       <strong>Procedural Oriented Programming (POP)</strong> and
       <strong>Object Oriented Programming (OOP)</strong>.
-      This makes Python flexible and easy to use for beginners as well as professionals.
     </p>
   </div>
 
   <div class="section">
     <h4>History of Python</h4>
     <p>
-      Python was developed by <strong>Guido van Rossum</strong>, a Dutch programmer.
-      Development started in the late 1980s and early 1990s as a hobby project.
-      Python was influenced by the ABC language and also borrowed features
-      from languages like C, C++, and Perl.
-      The name Python was inspired by the comedy TV show
+      Python was developed by <strong>Guido van Rossum</strong>.
+      The name was inspired by
       <em>Monty Python's Flying Circus</em>.
     </p>
   </div>
 
   <div class="section">
-    <h4>Sample Program: Print Hello World</h4>
-
-    <pre><code>
-print("Hello, World!")
-    </code></pre>
-  </div>
-
-  <div class="section">
-    <h4>Explanation</h4>
-    <p>
-      <strong>print()</strong> is a built-in function used to display output.<br>
-      Python does not require header files or a main function.<br>
-      The program is executed directly by the Python interpreter line by line.
-    </p>
+    <h4>Sample Program</h4>
+<pre><code>print("Hello, World!")</code></pre>
   </div>
 
   <div class="section">
     <h4>Output</h4>
-    <div class="output">
-      Hello, World!
-    </div>
+    <div class="output">Hello, World!</div>
   </div>
 
   <div class="section">
     <h4>Features of Python</h4>
     <p>
-      ✔ Easy to learn and read using simple English words.<br>
-      ✔ Open source and free to use.<br>
-      ✔ Portable – write once, run anywhere.<br>
-      ✔ Interpreted language.<br>
-      ✔ Dynamically typed (no need to mention data type explicitly).<br>
-      ✔ Requires fewer lines of code compared to C, C++ and Java.
+      ✔ Easy to learn<br>
+      ✔ Open source<br>
+      ✔ Interpreted<br>
+      ✔ Portable<br>
+      ✔ Dynamically typed
     </p>
   </div>
 
   <div class="section">
     <h4>Applications of Python</h4>
     <p>
-      ✔ Web Development using Django, Flask and FastAPI.<br>
-      ✔ Artificial Intelligence and Machine Learning.<br>
-      ✔ Data Science and Data Analysis.<br>
-      ✔ Automation and scripting tasks.<br>
-      ✔ Mobile App Development using Kivy and BeeWare.<br>
-      ✔ Game Development using Pygame.<br>
-      ✔ Desktop applications using Tkinter, PyQt and wxPython.
+      ✔ Web development<br>
+      ✔ Data science<br>
+      ✔ AI & ML<br>
+      ✔ Automation<br>
+      ✔ Desktop apps
     </p>
   </div>
 
   <div class="section">
     <h4>File Extension</h4>
-    <p>
-      Python programs are saved using the <strong>.py</strong> extension.
-    </p>
+    <p>Python programs use <strong>.py</strong></p>
   </div>
 
 </div>
+
+<script>
+const API = "http://127.0.0.1:5000";
+
+fetch(API + "/dashboard", { credentials:"include" })
+.then(res=>{
+  if(res.ok){
+    document.getElementById("profileMenu").style.display="flex";
+  }
+});
+
+function logout(){
+  fetch(API + "/logout", {
+    method:"POST",
+    credentials:"include"
+  }).then(()=>window.location.href="home.html");
+}
+</script>
+
 </body>
 </html>
