@@ -1,4 +1,4 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,170 +8,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
-}
-
-body{
-  background:#f3f6fb;
-  color:#1f2937;
-}
-
-/* ================= HEADER (UNCHANGED) ================= */
-header{
-  background:white;
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
-}
-
-header h2{ color:#2563eb; }
-
-nav{
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
-nav a{
-  text-decoration:none;
-  color:#374151;
-  font-weight:500;
-}
-
-.profile{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  position:relative;
-  cursor:pointer;
-}
-
-.profile img{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-}
-
-.profile-menu{
-  position:absolute;
-  top:45px;
-  right:0;
-  background:white;
-  border-radius:8px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.15);
-  width:170px;
-  display:none;
-  flex-direction:column;
-}
-
-.profile:hover .profile-menu{ display:flex; }
-
-.profile-menu a{
-  padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
-  font-size:14px;
-}
-
-.profile-menu a:hover{ background:#f3f4f6; }
-
-/* ================= QUIZ BODY ================= */
-.wrapper{
-  max-width:800px;
-  margin:60px auto;
-  padding:0 15px;
-}
-
-.quiz-card{
-  background:white;
-  padding:35px;
-  border-radius:18px;
-  box-shadow:0 18px 35px rgba(0,0,0,0.12);
-}
-
-.quiz-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:25px;
-}
-
-.quiz-top h3{ font-size:22px; }
-
-.progress{
-  font-size:14px;
-  color:#6b7280;
-}
-
-.question{
-  font-weight:600;
-  font-size:18px;
-  margin:25px 0;
-}
-
-.options div{
-  padding:14px 16px;
-  margin-bottom:12px;
-  border-radius:12px;
-  border:2px solid #e5e7eb;
-  cursor:pointer;
-}
-
-.options div:hover{
-  border-color:#2563eb;
-  background:#eef2ff;
-}
-
-.selected{
-  border-color:#2563eb;
-  background:#dbeafe;
-  font-weight:500;
-}
-
-.buttons{
-  display:flex;
-  justify-content:space-between;
-  margin-top:30px;
-}
-
-button{
-  padding:12px 30px;
-  background:linear-gradient(135deg,#2563eb,#4f46e5);
-  color:white;
-  border:none;
-  border-radius:12px;
-  cursor:pointer;
-}
-
-button:disabled{ background:#9ca3af; }
-
-.result{ margin-top:40px; }
-
-.wrong{
-  background:#fee2e2;
-  border-left:6px solid #dc2626;
-  padding:18px;
-  border-radius:10px;
-  margin-bottom:18px;
-}
-
-.correct{
-  background:#dcfce7;
-  border-left:6px solid #16a34a;
-  padding:18px;
-  border-radius:10px;
-}
-
-.explain{
-  margin-top:8px;
-  font-size:14px;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f3f6fb;color:#1f2937;}
+header{background:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 5px 14px rgba(0,0,0,0.08);}
+header h2{color:#2563eb;}
+nav{display:flex;align-items:center;gap:10px;}
+nav a{text-decoration:none;color:#374151;font-weight:500;}
+.profile{display:flex;align-items:center;gap:8px;position:relative;cursor:pointer;}
+.profile img{width:34px;height:34px;border-radius:50%;}
+.profile-menu{position:absolute;top:45px;right:0;background:white;border-radius:8px;box-shadow:0 10px 25px rgba(0,0,0,0.15);width:170px;display:none;flex-direction:column;}
+.profile:hover .profile-menu{display:flex;}
+.profile-menu a{padding:12px 15px;text-decoration:none;color:#374151;font-size:14px;}
+.profile-menu a:hover{background:#f3f4f6;}
+.wrapper{max-width:800px;margin:60px auto;padding:0 15px;}
+.quiz-card{background:white;padding:35px;border-radius:18px;box-shadow:0 18px 35px rgba(0,0,0,0.12);}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;}
+.question{font-weight:600;font-size:18px;margin:25px 0;}
+.options div{padding:14px 16px;margin-bottom:12px;border-radius:12px;border:2px solid #e5e7eb;cursor:pointer;}
+.options div:hover{border-color:#2563eb;background:#eef2ff;}
+.selected{border-color:#2563eb;background:#dbeafe;}
+.buttons{display:flex;justify-content:space-between;margin-top:30px;}
+button{padding:12px 30px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:white;border:none;border-radius:12px;cursor:pointer;}
+button:disabled{background:#9ca3af;}
+.result{margin-top:30px;}
+.wrong{background:#fee2e2;border-left:6px solid #dc2626;padding:18px;border-radius:10px;margin-bottom:15px;}
+.correct{background:#dcfce7;border-left:6px solid #16a34a;padding:18px;border-radius:10px;}
+.explain{margin-top:6px;font-size:14px;}
 </style>
 </head>
 
@@ -180,14 +42,14 @@ button:disabled{ background:#9ca3af; }
 <header>
   <h2>PyLearn</h2>
   <nav>
-    <a href="home.html">Home</a>
-    <a href="course.html">Courses</a>
+    <a href="#">Home</a>
+    <a href="#">Courses</a>
     <div class="profile">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
       <span>Student</span>
       <div class="profile-menu">
-        <a href="profile.html">My Profile</a>
-        <a href="dashboard.html">Dashboard</a>
+        <a href="#">My Profile</a>
+        <a href="#">Dashboard</a>
         <a href="#">Logout</a>
       </div>
     </div>
@@ -196,10 +58,9 @@ button:disabled{ background:#9ca3af; }
 
 <div class="wrapper">
   <div class="quiz-card">
-
     <div class="quiz-top">
-      <h3>Python–Introduction Unit Test</h3>
-      <div class="progress" id="progress"></div>
+      <h3>Python – Introduction Unit Test</h3>
+      <div id="progress"></div>
     </div>
 
     <div id="quizArea">
@@ -207,13 +68,12 @@ button:disabled{ background:#9ca3af; }
       <div class="options" id="options"></div>
 
       <div class="buttons">
-        <button onclick="prevQ()" id="prevBtn">Previous</button>
-        <button onclick="nextQ()" id="nextBtn">Next</button>
+        <button id="prevBtn" onclick="prevQ()">Previous</button>
+        <button id="nextBtn" onclick="nextQ()">Next</button>
       </div>
     </div>
 
     <div id="result" class="result"></div>
-
   </div>
 </div>
 
@@ -222,7 +82,7 @@ const quiz = [
 {q:"Who developed Python?",o:["Guido van Rossum","Dennis Ritchie","James Gosling"],a:0,e:"Python was developed by Guido van Rossum."},
 {q:"Python was released in which year?",o:["1989","1991","1995"],a:1,e:"Python was released in 1991."},
 {q:"Python is a ____ level language.",o:["Low","Middle","High"],a:2,e:"Python is a high-level language."},
-{q:"Which feature improves readability?",o:["Pointers","Indentation","Macros"],a:1,e:"Indentation makes Python readable."},
+{q:"Which feature improves readability?",o:["Pointers","Indentation","Macros"],a:1,e:"Indentation improves readability."},
 {q:"Python supports which style?",o:["Procedural","Object-oriented","Both"],a:2,e:"Python supports both paradigms."},
 
 {q:"Which is a Python application?",o:["Web development","Data science","Both"],a:2,e:"Python is used in both."},
@@ -250,46 +110,52 @@ const quiz = [
 {q:"Which operator compares values?",o:["=","==","+="],a:1,e:"== compares values."},
 
 {q:"Which has highest precedence?",o:["*","+","()"],a:2,e:"Parentheses have highest precedence."},
-{q:"Result of 5>3?",o:["True","False","Error"],a:0,e:"5>3 is True."},
+{q:"Result of 5 > 3?",o:["True","False","Error"],a:0,e:"5 > 3 is True."},
 {q:"Built-in function?",o:["len()","size()","length()"],a:0,e:"len() is built-in."},
 {q:"Functions are used to?",o:["Repeat code","Reduce repetition","Delete code"],a:1,e:"Functions reduce repetition."}
 ];
 
-let cur=0;
-let ans=new Array(quiz.length).fill(null);
+let cur = 0;
+let ans = new Array(quiz.length).fill(null);
 
 function load(){
-  progress.innerText=`Question ${cur+1} of ${quiz.length}`;
-  questionText.innerText=(cur+1)+". "+quiz[cur].q;
-  options.innerHTML=quiz[cur].o.map((x,i)=>
-    `<div class="${ans[cur]===i?'selected':''}" onclick="sel(${i})">${x}</div>`
+  progress.innerText = `Question ${cur+1} of ${quiz.length}`;
+  questionText.innerText = `${cur+1}. ${quiz[cur].q}`;
+  options.innerHTML = quiz[cur].o.map((op,i)=>
+    `<div class="${ans[cur]===i?'selected':''}" onclick="selectOpt(${i})">${op}</div>`
   ).join("");
-  prevBtn.disabled=cur===0;
-  nextBtn.innerText=cur===quiz.length-1?"Submit":"Next";
+  prevBtn.disabled = cur === 0;
+  nextBtn.innerText = cur === quiz.length-1 ? "Submit" : "Next";
 }
 
-function sel(i){ ans[cur]=i; load(); }
-function nextQ(){ cur===quiz.length-1 ? show() : cur++, load(); }
+function selectOpt(i){ ans[cur]=i; load(); }
+
+function nextQ(){
+  if(cur === quiz.length-1){
+    if(ans.includes(null)){ alert("Answer all questions"); return; }
+    showResult();
+  } else { cur++; load(); }
+}
+
 function prevQ(){ cur--; load(); }
 
-function show(){
-  let score=0,out="";
+function showResult(){
+  let score = 0, out = "";
   quiz.forEach((q,i)=>{
-    if(ans[i]===q.a) score++;
-    else{
-      out+=`
-      <div class="wrong">
-        <strong>Question:</strong> ${q.q}<br>
-        <strong>Your Answer:</strong> ${q.o[ans[i]] || "Not Answered"}<br>
-        <strong>Correct Answer:</strong> ${q.o[q.a]}
-        <div class="explain"><strong>Explanation:</strong> ${q.e}</div>
-      </div>`;
-    }
+    if(ans[i] === q.a) score++;
+    else out += `
+    <div class="wrong">
+      <strong>Question:</strong> ${q.q}<br>
+      <strong>Your Answer:</strong> ${q.o[ans[i]]}<br>
+      <strong>Correct Answer:</strong> ${q.o[q.a]}
+      <div class="explain"><strong>Explanation:</strong> ${q.e}</div>
+    </div>`;
   });
-  quizArea.style.display="none";
-  result.innerHTML=
+  quizArea.style.display = "none";
+  result.innerHTML =
     `<h3>Your Score: ${score} / ${quiz.length}</h3>` +
-    (out || `<div class="correct">Excellent! All answers correct 🎉</div>`);
+    (out || `<div class="correct">Excellent! All answers correct 🎉</div>`) +
+    `<br><button onclick="location.reload()">Restart Quiz</button>`;
 }
 
 load();
