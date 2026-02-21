@@ -1,4 +1,4 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -23,11 +23,11 @@ body{
 /* ================= HEADER ================= */
 header{
   background:white;
-  padding:18px 20px;
+  padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
 
 header h2{
@@ -38,7 +38,7 @@ header h2{
 nav{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:25px;
 }
 
 nav a{
@@ -47,9 +47,13 @@ nav a{
   font-weight:500;
 }
 
+nav a:hover{
+  color:#2563eb;
+}
+
 /* ===== STUDENT PROFILE ===== */
 .profile{
-  display:flex;
+  display:none; /* show only after login */
   align-items:center;
   gap:8px;
   position:relative;
@@ -81,18 +85,22 @@ nav a{
   z-index:10;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
-/* SHOW DROPDOWN */
 .profile:hover .profile-menu{
   display:flex;
 }
@@ -156,7 +164,6 @@ code{
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <h2>PyLearn</h2>
 
@@ -164,20 +171,19 @@ code{
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile">
+    <div class="profile" id="profileBox">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
       <span>Student</span>
 
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+        <button>Logout</button>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ================= MAIN CONTENT ================= -->
 <div class="container">
 
   <h3>Data Types in Python</h3>
@@ -194,8 +200,6 @@ code{
   <div class="section">
     <h4>Classification of Data Types</h4>
     <p>
-      Python data types are classified into the following categories:
-      <br><br>
       ✔ Numeric Data Types<br>
       ✔ Sequence Data Types<br>
       ✔ Set Data Types<br>
@@ -205,14 +209,8 @@ code{
     </p>
   </div>
 
-  <!-- NUMERIC -->
   <div class="section">
     <h4>1. Numeric Data Types</h4>
-    <p>
-      Numeric data types are used to store numerical values.
-      Examples include <strong>int</strong>, <strong>float</strong>, and <strong>complex</strong>.
-    </p>
-
     <pre><code>
 a = 10
 b = 3.5
@@ -230,103 +228,45 @@ print(type(c))
     </div>
   </div>
 
-  <!-- SEQUENCE -->
   <div class="section">
     <h4>2. Sequence Data Types</h4>
-    <p>
-      Sequence data types store multiple values in an ordered manner.
-      Examples include <strong>list</strong>, <strong>tuple</strong>,
-      and <strong>string</strong>.
-    </p>
-
     <pre><code>
 lst = [1, 2, 3]
 tup = (10, 20, 30)
 name = "Python"
-
-print(type(lst))
-print(type(tup))
-print(type(name))
     </code></pre>
-
-    <div class="output">
-      &lt;class 'list'&gt;<br>
-      &lt;class 'tuple'&gt;<br>
-      &lt;class 'str'&gt;
-    </div>
   </div>
 
-  <!-- SET -->
   <div class="section">
-    <h4>3. Set Data Types</h4>
-    <p>
-      Set data types store unordered and unique values.
-      The main example is <strong>set</strong>.
-    </p>
-
+    <h4>3. Set Data Type</h4>
     <pre><code>
 s = {1, 2, 3, 3}
 print(s)
-print(type(s))
     </code></pre>
-
-    <div class="output">
-      {1, 2, 3}<br>
-      &lt;class 'set'&gt;
-    </div>
   </div>
 
-  <!-- MAPPING -->
   <div class="section">
     <h4>4. Mapping Data Type</h4>
-    <p>
-      Mapping data type stores values in key-value pairs.
-      The example is <strong>dictionary</strong>.
-    </p>
-
     <pre><code>
-student = {"name": "Harsha", "age": 20}
+student = {"name": "Harsha", "language": "Python"}
 print(type(student))
     </code></pre>
-
-    <div class="output">
-      &lt;class 'dict'&gt;
-    </div>
   </div>
 
-  <!-- BOOLEAN -->
   <div class="section">
     <h4>5. Boolean Data Type</h4>
-    <p>
-      Boolean data type represents two values:
-      <strong>True</strong> or <strong>False</strong>.
-    </p>
-
     <pre><code>
 x = True
 print(type(x))
     </code></pre>
-
-    <div class="output">
-      &lt;class 'bool'&gt;
-    </div>
   </div>
 
-  <!-- NONE -->
   <div class="section">
     <h4>6. None Data Type</h4>
-    <p>
-      The <strong>None</strong> data type represents the absence of a value.
-    </p>
-
     <pre><code>
 value = None
 print(type(value))
     </code></pre>
-
-    <div class="output">
-      &lt;class 'NoneType'&gt;
-    </div>
   </div>
 
 </div>
