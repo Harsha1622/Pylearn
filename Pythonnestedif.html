@@ -1,11 +1,11 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>PyLearn | Nested if Statement in Python</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,29 +16,30 @@
 }
 
 body{
-  background:#f3f6fb;
+  background:#f5f7fb;
   color:#1f2937;
 }
 
 /* ================= HEADER ================= */
 header{
   background:white;
-  padding:18px 20px;
+  padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
 
 header h2{
   color:#2563eb;
+  font-weight:700;
 }
 
 /* NAV */
 nav{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:25px;
 }
 
 nav a{
@@ -47,9 +48,13 @@ nav a{
   font-weight:500;
 }
 
-/* ===== STUDENT PROFILE ===== */
+nav a:hover{
+  color:#2563eb;
+}
+
+/* ===== PROFILE (HIDDEN UNTIL LOGIN) ===== */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
@@ -62,11 +67,6 @@ nav a{
   border-radius:50%;
 }
 
-.profile span{
-  font-weight:500;
-}
-
-/* DROPDOWN */
 .profile-menu{
   position:absolute;
   top:45px;
@@ -77,22 +77,24 @@ nav a{
   width:170px;
   display:none;
   flex-direction:column;
-  overflow:hidden;
-  z-index:10;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
-/* SHOW DROPDOWN */
 .profile:hover .profile-menu{
   display:flex;
 }
@@ -127,7 +129,7 @@ nav a{
   font-size:15px;
 }
 
-/* CODE BOX */
+/* CODE */
 pre{
   background:#111827;
   color:#e5e7eb;
@@ -137,12 +139,6 @@ pre{
   margin-top:10px;
 }
 
-code{
-  font-family:Consolas, monospace;
-  font-size:14px;
-}
-
-/* OUTPUT BOX */
 .output{
   background:#f9fafb;
   border:1px solid #d1d5db;
@@ -156,28 +152,23 @@ code{
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <h2>PyLearn</h2>
-
   <nav>
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile">
+    <div class="profile" id="profileMenu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
-      <span>Student</span>
-
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ================= MAIN CONTENT ================= -->
 <div class="container">
 
   <h3>Nested if Statement in Python</h3>
@@ -187,7 +178,7 @@ code{
     <p>
       A <strong>nested if statement</strong> is an if statement placed
       inside another if statement.
-      It is used when a condition depends on another condition.
+      It is used when one condition depends on another condition.
     </p>
   </div>
 
@@ -202,23 +193,19 @@ code{
 
   <div class="section">
     <h4>Syntax of Nested if Statement</h4>
-    <pre><code>
-if condition1:
+<pre><code>if condition1:
     if condition2:
-        statements
-    </code></pre>
+        statements</code></pre>
   </div>
 
   <div class="section">
     <h4>Example: Nested if Statement</h4>
-    <pre><code>
-age = 25
+<pre><code>age = 25
 has_id = True
 
 if age >= 18:
     if has_id:
-        print("Entry allowed")
-    </code></pre>
+        print("Entry allowed")</code></pre>
   </div>
 
   <div class="section">
@@ -231,14 +218,32 @@ if age >= 18:
   <div class="section">
     <h4>Important Points</h4>
     <p>
-      ✔ The inner if executes only when the outer if is true.<br>
-      ✔ Proper indentation is very important.<br>
+      ✔ Inner if executes only if outer condition is true.<br>
+      ✔ Indentation is mandatory in Python.<br>
       ✔ Nested if improves decision accuracy.<br>
-      ✔ Too many nested if statements reduce readability.
+      ✔ Too much nesting reduces readability.
     </p>
   </div>
 
 </div>
+
+<script>
+const API = "http://127.0.0.1:5000";
+
+fetch(API + "/dashboard", { credentials:"include" })
+.then(res=>{
+  if(res.ok){
+    document.getElementById("profileMenu").style.display="flex";
+  }
+});
+
+function logout(){
+  fetch(API + "/logout", {
+    method:"POST",
+    credentials:"include"
+  }).then(()=>window.location.href="home.html");
+}
+</script>
 
 </body>
 </html>
