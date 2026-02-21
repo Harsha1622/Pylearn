@@ -1,11 +1,11 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PyLearn | Process of Running Python Script</title>
+<title>PyLearn | Process of Running a Python Script</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,29 +16,30 @@
 }
 
 body{
-  background:#f3f6fb;
+  background:#f5f7fb;
   color:#1f2937;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   background:white;
-  padding:18px 20px;
+  padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
 
 header h2{
   color:#2563eb;
+  font-weight:700;
 }
 
 /* NAV */
 nav{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:25px;
 }
 
 nav a{
@@ -47,9 +48,13 @@ nav a{
   font-weight:500;
 }
 
-/* ===== STUDENT PROFILE ===== */
+nav a:hover{
+  color:#2563eb;
+}
+
+/* PROFILE (hidden until login) */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
@@ -62,11 +67,6 @@ nav a{
   border-radius:50%;
 }
 
-.profile span{
-  font-weight:500;
-}
-
-/* DROPDOWN */
 .profile-menu{
   position:absolute;
   top:45px;
@@ -77,27 +77,29 @@ nav a{
   width:170px;
   display:none;
   flex-direction:column;
-  overflow:hidden;
-  z-index:10;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
-/* SHOW DROPDOWN */
 .profile:hover .profile-menu{
   display:flex;
 }
 
-/* ================= CONTENT ================= */
+/* CONTENT */
 .container{
   max-width:900px;
   margin:50px auto;
@@ -127,7 +129,6 @@ nav a{
   font-size:15px;
 }
 
-/* CODE BOX */
 pre{
   background:#111827;
   color:#e5e7eb;
@@ -142,7 +143,6 @@ code{
   font-size:14px;
 }
 
-/* OUTPUT BOX */
 .output{
   background:#f9fafb;
   border:1px solid #d1d5db;
@@ -156,113 +156,115 @@ code{
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <h2>PyLearn</h2>
-
   <nav>
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile">
-      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
-      <span>Student</span>
-
+    <div class="profile" id="profileMenu">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ================= MAIN CONTENT ================= -->
 <div class="container">
 
-  <h3>Process of Running a Python Script</h3>
+<h3>Process of Running a Python Script</h3>
 
-  <div class="section">
-    <h4>What is a Python Script?</h4>
-    <p>
-      A Python script is a file containing Python statements and instructions.
-      Python scripts are saved using the <strong>.py</strong> extension and
-      executed by the Python interpreter.
-    </p>
-  </div>
+<div class="section">
+<h4>What is a Python Script?</h4>
+<p>
+A Python script is a file containing Python instructions.
+It is saved using the <strong>.py</strong> extension and executed
+by the Python interpreter.
+</p>
+</div>
 
-  <div class="section">
-    <h4>Steps to Run a Python Script</h4>
-    <p>
-      The process of running a Python script involves writing the code,
-      saving it, and executing it using the Python interpreter.
-    </p>
-  </div>
-
-  <div class="section">
-    <h4>Step 1: Write the Python Program</h4>
-    <p>
-      First, write the Python program using an editor such as IDLE,
-      Visual Studio Code, or any text editor.
-    </p>
-
-    <pre><code>
+<div class="section">
+<h4>Step 1: Write the Python Program</h4>
+<pre><code>
 print("Python script executed successfully")
-    </code></pre>
-  </div>
+</code></pre>
+</div>
 
-  <div class="section">
-    <h4>Step 2: Save the File</h4>
-    <p>
-      Save the program with a <strong>.py</strong> extension.
-      Example: <strong>script.py</strong>
-    </p>
-  </div>
+<div class="section">
+<h4>Step 2: Save the File</h4>
+<p>
+Save the program with a <strong>.py</strong> extension.
+Example: <strong>script.py</strong>
+</p>
+</div>
 
-  <div class="section">
-    <h4>Step 3: Run the Script</h4>
-    <p>
-      The Python interpreter reads the script line by line,
-      converts it into bytecode, and executes it.
-    </p>
+<div class="section">
+<h4>Step 3: Run the Script</h4>
+<p>You can run a Python script in multiple ways:</p>
 
-    <pre><code>
+<pre><code>
+# Using Command Prompt / Terminal
 python script.py
-    </code></pre>
-  </div>
+</code></pre>
 
-  <div class="section">
-    <h4>Step 4: Output Display</h4>
-    <p>
-      After successful execution, the output is displayed on the screen.
-    </p>
+<p>
+✔ Using IDLE → Run Module (F5)<br>
+✔ Using VS Code → Run Python File<br>
+✔ Using Terminal → python filename.py
+</p>
+</div>
 
-    <div class="output">
-      Python script executed successfully
-    </div>
-  </div>
+<div class="section">
+<h4>Step 4: Output Display</h4>
+<div class="output">
+Python script executed successfully
+</div>
+</div>
 
-  <div class="section">
-    <h4>Behind the Execution Process</h4>
-    <p>
-      ✔ The Python interpreter checks syntax.<br>
-      ✔ Converts source code into bytecode.<br>
-      ✔ Executes bytecode using the Python Virtual Machine (PVM).<br>
-      ✔ Displays output or error messages.
-    </p>
-  </div>
+<div class="section">
+<h4>Behind the Execution Process</h4>
+<p>
+✔ Source code (.py) is checked for syntax<br>
+✔ Converted into bytecode (.pyc)<br>
+✔ Executed by Python Virtual Machine (PVM)<br>
+✔ Output or error is displayed
+</p>
+</div>
 
-  <div class="section">
-    <h4>Advantages of Running Python Scripts</h4>
-    <p>
-      ✔ Easy to execute and debug.<br>
-      ✔ No compilation required.<br>
-      ✔ Platform independent.<br>
-      ✔ Suitable for automation and scripting tasks.
-    </p>
-  </div>
+<div class="section">
+<h4>Advantages</h4>
+<p>
+✔ No compilation required<br>
+✔ Easy to debug and modify<br>
+✔ Platform independent<br>
+✔ Ideal for automation and scripting
+</p>
+</div>
 
 </div>
+
+<script>
+const API = "http://127.0.0.1:5000";
+
+fetch(API + "/dashboard", { credentials:"include" })
+.then(res=>{
+  if(res.ok){
+    document.getElementById("profileMenu").style.display="flex";
+  }
+});
+
+function logout(){
+  fetch(API + "/logout", {
+    method:"POST",
+    credentials:"include"
+  }).then(()=>{
+    window.location.href="home.html";
+  });
+}
+</script>
 
 </body>
 </html>
