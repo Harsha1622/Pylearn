@@ -1,11 +1,11 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>PyLearn | Purpose of Modules in Python</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,18 +16,18 @@
 }
 
 body{
-  background:#f3f6fb;
+  background:#f5f7fb;
   color:#1f2937;
 }
 
 /* ================= HEADER ================= */
 header{
   background:white;
-  padding:18px 20px;
+  padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
 
 header h2{
@@ -38,7 +38,7 @@ header h2{
 nav{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:25px;
 }
 
 nav a{
@@ -47,9 +47,13 @@ nav a{
   font-weight:500;
 }
 
-/* ===== STUDENT PROFILE ===== */
+nav a:hover{
+  color:#2563eb;
+}
+
+/* ===== PROFILE (HIDDEN UNTIL LOGIN) ===== */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
@@ -62,11 +66,6 @@ nav a{
   border-radius:50%;
 }
 
-.profile span{
-  font-weight:500;
-}
-
-/* DROPDOWN */
 .profile-menu{
   position:absolute;
   top:45px;
@@ -77,22 +76,24 @@ nav a{
   width:170px;
   display:none;
   flex-direction:column;
-  overflow:hidden;
-  z-index:10;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
-/* SHOW DROPDOWN */
 .profile:hover .profile-menu{
   display:flex;
 }
@@ -127,7 +128,7 @@ nav a{
   font-size:15px;
 }
 
-/* CODE BOX */
+/* CODE */
 pre{
   background:#111827;
   color:#e5e7eb;
@@ -137,12 +138,6 @@ pre{
   margin-top:10px;
 }
 
-code{
-  font-family:Consolas, monospace;
-  font-size:14px;
-}
-
-/* OUTPUT BOX */
 .output{
   background:#f9fafb;
   border:1px solid #d1d5db;
@@ -156,7 +151,6 @@ code{
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <h2>PyLearn</h2>
 
@@ -164,20 +158,17 @@ code{
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile">
+    <div class="profile" id="profileMenu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
-      <span>Student</span>
-
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ================= MAIN CONTENT ================= -->
 <div class="container">
 
   <h3>Purpose of Modules in Python</h3>
@@ -185,69 +176,73 @@ code{
   <div class="section">
     <h4>What is a Module?</h4>
     <p>
-      A module is a file that contains Python code such as functions,
-      variables, and classes. Modules help in organizing large programs
-      into smaller, manageable and reusable parts.
+      A module is a file that contains Python code such as variables,
+      functions, and classes. Modules help organize large programs
+      into smaller, reusable units.
     </p>
   </div>
 
   <div class="section">
-    <h4>Why Modules are Needed?</h4>
+    <h4>Why Modules Are Needed?</h4>
     <p>
       When a program becomes large, writing all code in a single file
-      becomes difficult to manage. Modules help divide the program
-      into separate files based on functionality.
+      becomes difficult to manage. Modules divide programs into
+      separate files based on functionality.
     </p>
   </div>
 
   <div class="section">
     <h4>Purpose of Using Modules</h4>
     <p>
-      ✔ To improve code reusability.<br>
-      ✔ To make programs easier to read and understand.<br>
-      ✔ To simplify debugging and maintenance.<br>
-      ✔ To avoid rewriting the same code again and again.<br>
-      ✔ To organize code in a structured manner.
+      ✔ Improves code reusability.<br>
+      ✔ Makes programs easier to read.<br>
+      ✔ Simplifies debugging and maintenance.<br>
+      ✔ Avoids code duplication.<br>
+      ✔ Organizes code systematically.
     </p>
   </div>
 
   <div class="section">
     <h4>Example: Using a Built-in Module</h4>
 
-    <pre><code>
-import math
-
-print(math.sqrt(25))
-    </code></pre>
-  </div>
-
-  <div class="section">
-    <h4>Explanation</h4>
-    <p>
-      <strong>import math</strong> imports the built-in math module.<br>
-      <strong>math.sqrt()</strong> is used to calculate the square root of a number.<br>
-      Using modules allows us to use predefined functions easily.
-    </p>
+<pre><code>import math
+print(math.sqrt(25))</code></pre>
   </div>
 
   <div class="section">
     <h4>Output</h4>
-    <div class="output">
-      5.0
-    </div>
+    <div class="output">5.0</div>
   </div>
 
   <div class="section">
     <h4>Advantages of Modules</h4>
     <p>
       ✔ Saves development time.<br>
-      ✔ Reduces code duplication.<br>
-      ✔ Makes programs more reliable.<br>
-      ✔ Encourages teamwork and code sharing.
+      ✔ Reduces errors.<br>
+      ✔ Encourages code sharing.<br>
+      ✔ Improves program reliability.
     </p>
   </div>
 
 </div>
+
+<script>
+const API = "http://127.0.0.1:5000";
+
+fetch(API + "/dashboard", { credentials:"include" })
+.then(res=>{
+  if(res.ok){
+    document.getElementById("profileMenu").style.display="flex";
+  }
+});
+
+function logout(){
+  fetch(API + "/logout", {
+    method:"POST",
+    credentials:"include"
+  }).then(()=>window.location.href="home.html");
+}
+</script>
 
 </body>
 </html>
