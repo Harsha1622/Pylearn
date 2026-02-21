@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PyLearn | Python Introduction Quiz</title>
+<title>PyLearn | Python Introduction Unit Test</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -10,30 +10,69 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#f3f6fb;color:#1f2937;}
-header{background:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 5px 14px rgba(0,0,0,0.08);}
+
+/* HEADER */
+header{
+  background:white;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+}
 header h2{color:#2563eb;}
+
 nav{display:flex;align-items:center;gap:10px;}
 nav a{text-decoration:none;color:#374151;font-weight:500;}
-.profile{display:flex;align-items:center;gap:8px;position:relative;cursor:pointer;}
-.profile img{width:34px;height:34px;border-radius:50%;}
-.profile-menu{position:absolute;top:45px;right:0;background:white;border-radius:8px;box-shadow:0 10px 25px rgba(0,0,0,0.15);width:170px;display:none;flex-direction:column;}
+
+/* PROFILE */
+.profile{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  position:relative;
+  cursor:pointer;
+}
+.profile img{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+}
+.profile-menu{
+  position:absolute;
+  top:45px;
+  right:0;
+  background:white;
+  border-radius:8px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  width:170px;
+  display:none;
+  flex-direction:column;
+}
 .profile:hover .profile-menu{display:flex;}
-.profile-menu a{padding:12px 15px;text-decoration:none;color:#374151;font-size:14px;}
+.profile-menu a{
+  padding:12px 15px;
+  text-decoration:none;
+  color:#374151;
+  font-size:14px;
+}
 .profile-menu a:hover{background:#f3f4f6;}
-.wrapper{max-width:800px;margin:60px auto;padding:0 15px;}
+
+/* QUIZ */
+.wrapper{max-width:850px;margin:60px auto;padding:0 15px;}
 .quiz-card{background:white;padding:35px;border-radius:18px;box-shadow:0 18px 35px rgba(0,0,0,0.12);}
-.quiz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;}
-.question{font-weight:600;font-size:18px;margin:25px 0;}
+.quiz-top{display:flex;justify-content:space-between;margin-bottom:20px;}
+.question{font-size:18px;font-weight:600;margin:25px 0;}
 .options div{padding:14px 16px;margin-bottom:12px;border-radius:12px;border:2px solid #e5e7eb;cursor:pointer;}
-.options div:hover{border-color:#2563eb;background:#eef2ff;}
-.selected{border-color:#2563eb;background:#dbeafe;}
+.options div:hover{background:#eef2ff;border-color:#2563eb;}
+.selected{background:#dbeafe;border-color:#2563eb;}
 .buttons{display:flex;justify-content:space-between;margin-top:30px;}
-button{padding:12px 30px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:white;border:none;border-radius:12px;cursor:pointer;}
+button{padding:12px 30px;border:none;border-radius:12px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:white;cursor:pointer;}
 button:disabled{background:#9ca3af;}
 .result{margin-top:30px;}
 .wrong{background:#fee2e2;border-left:6px solid #dc2626;padding:18px;border-radius:10px;margin-bottom:15px;}
 .correct{background:#dcfce7;border-left:6px solid #16a34a;padding:18px;border-radius:10px;}
-.explain{margin-top:6px;font-size:14px;}
+.explain{font-size:14px;margin-top:6px;}
 </style>
 </head>
 
@@ -58,6 +97,7 @@ button:disabled{background:#9ca3af;}
 
 <div class="wrapper">
   <div class="quiz-card">
+
     <div class="quiz-top">
       <h3>Python – Introduction Unit Test</h3>
       <div id="progress"></div>
@@ -74,6 +114,7 @@ button:disabled{background:#9ca3af;}
     </div>
 
     <div id="result" class="result"></div>
+
   </div>
 </div>
 
@@ -115,35 +156,31 @@ const quiz = [
 {q:"Functions are used to?",o:["Repeat code","Reduce repetition","Delete code"],a:1,e:"Functions reduce repetition."}
 ];
 
-let cur = 0;
-let ans = new Array(quiz.length).fill(null);
+let cur=0;
+let ans=new Array(quiz.length).fill(null);
 
 function load(){
-  progress.innerText = `Question ${cur+1} of ${quiz.length}`;
-  questionText.innerText = `${cur+1}. ${quiz[cur].q}`;
-  options.innerHTML = quiz[cur].o.map((op,i)=>
+  progress.innerText=`Question ${cur+1} of ${quiz.length}`;
+  questionText.innerText=`${cur+1}. ${quiz[cur].q}`;
+  options.innerHTML=quiz[cur].o.map((op,i)=>
     `<div class="${ans[cur]===i?'selected':''}" onclick="selectOpt(${i})">${op}</div>`
   ).join("");
-  prevBtn.disabled = cur === 0;
-  nextBtn.innerText = cur === quiz.length-1 ? "Submit" : "Next";
+  prevBtn.disabled=cur===0;
+  nextBtn.innerText=cur===quiz.length-1?"Submit":"Next";
 }
-
-function selectOpt(i){ ans[cur]=i; load(); }
-
+function selectOpt(i){ans[cur]=i;load();}
 function nextQ(){
-  if(cur === quiz.length-1){
-    if(ans.includes(null)){ alert("Answer all questions"); return; }
+  if(cur===quiz.length-1){
+    if(ans.includes(null)){alert("Answer all questions");return;}
     showResult();
-  } else { cur++; load(); }
+  } else {cur++;load();}
 }
-
-function prevQ(){ cur--; load(); }
-
+function prevQ(){cur--;load();}
 function showResult(){
-  let score = 0, out = "";
+  let score=0,out="";
   quiz.forEach((q,i)=>{
-    if(ans[i] === q.a) score++;
-    else out += `
+    if(ans[i]===q.a) score++;
+    else out+=`
     <div class="wrong">
       <strong>Question:</strong> ${q.q}<br>
       <strong>Your Answer:</strong> ${q.o[ans[i]]}<br>
@@ -151,13 +188,12 @@ function showResult(){
       <div class="explain"><strong>Explanation:</strong> ${q.e}</div>
     </div>`;
   });
-  quizArea.style.display = "none";
-  result.innerHTML =
-    `<h3>Your Score: ${score} / ${quiz.length}</h3>` +
-    (out || `<div class="correct">Excellent! All answers correct 🎉</div>`) +
+  quizArea.style.display="none";
+  result.innerHTML=
+    `<h3>Your Score: ${score} / ${quiz.length}</h3>`+
+    (out||`<div class="correct">Excellent! All correct 🎉</div>`) +
     `<br><button onclick="location.reload()">Restart Quiz</button>`;
 }
-
 load();
 </script>
 
