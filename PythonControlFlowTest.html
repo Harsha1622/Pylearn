@@ -5,47 +5,67 @@
 <title>PyLearn | Control Flow & Jump Statements</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#f3f6fb;color:#1f2937;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
 
-/* HEADER */
+body{
+  background:#f5f7fb;
+  color:#1f2937;
+}
+
+/* ================= HEADER ================= */
 header{
   background:white;
-  padding:18px 20px;
+  padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
-header h2{color:#2563eb;}
+
+header h2{
+  color:#2563eb;
+  font-weight:700;
+}
 
 nav{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:25px;
 }
+
 nav a{
   text-decoration:none;
   color:#374151;
   font-weight:500;
 }
 
-/* PROFILE */
+nav a:hover{
+  color:#2563eb;
+}
+
+/* ===== PROFILE ===== */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
   cursor:pointer;
 }
+
 .profile img{
   width:34px;
   height:34px;
   border-radius:50%;
 }
+
 .profile-menu{
   position:absolute;
   top:45px;
@@ -57,30 +77,113 @@ nav a{
   display:none;
   flex-direction:column;
 }
-.profile:hover .profile-menu{display:flex;}
-.profile-menu a{
-  padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
-  font-size:14px;
-}
-.profile-menu a:hover{background:#f3f4f6;}
 
-/* QUIZ */
-.wrapper{max-width:850px;margin:60px auto;padding:0 15px;}
-.quiz-card{background:white;padding:35px;border-radius:18px;box-shadow:0 18px 35px rgba(0,0,0,0.12);}
-.quiz-top{display:flex;justify-content:space-between;margin-bottom:20px;}
-.question{font-size:18px;font-weight:600;margin:25px 0;}
-.options div{padding:14px 16px;margin-bottom:12px;border-radius:12px;border:2px solid #e5e7eb;cursor:pointer;}
-.options div:hover{background:#eef2ff;border-color:#2563eb;}
-.selected{background:#dbeafe;border-color:#2563eb;}
-.buttons{display:flex;justify-content:space-between;margin-top:30px;}
-button{padding:12px 30px;border:none;border-radius:12px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:white;cursor:pointer;}
-button:disabled{background:#9ca3af;}
-.result{margin-top:30px;}
-.wrong{background:#fee2e2;border-left:6px solid #dc2626;padding:18px;border-radius:10px;margin-bottom:15px;}
-.correct{background:#dcfce7;border-left:6px solid #16a34a;padding:18px;border-radius:10px;}
-.explain{font-size:14px;margin-top:6px;}
+.profile-menu a,
+.profile-menu button{
+  padding:12px 15px;
+  background:none;
+  border:none;
+  text-align:left;
+  font-size:14px;
+  cursor:pointer;
+  color:#374151;
+}
+
+.profile-menu a:hover,
+.profile-menu button:hover{
+  background:#f3f4f6;
+}
+
+.profile:hover .profile-menu{
+  display:flex;
+}
+
+/* ================= QUIZ ================= */
+.wrapper{
+  max-width:850px;
+  margin:60px auto;
+  padding:0 15px;
+}
+
+.quiz-card{
+  background:white;
+  padding:35px;
+  border-radius:18px;
+  box-shadow:0 18px 35px rgba(0,0,0,0.12);
+}
+
+.quiz-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.question{
+  font-size:18px;
+  font-weight:600;
+  margin:25px 0;
+}
+
+.options div{
+  padding:14px 16px;
+  margin-bottom:12px;
+  border-radius:12px;
+  border:2px solid #e5e7eb;
+  cursor:pointer;
+}
+
+.options div:hover{
+  background:#eef2ff;
+  border-color:#2563eb;
+}
+
+.selected{
+  background:#dbeafe;
+  border-color:#2563eb;
+}
+
+.buttons{
+  display:flex;
+  justify-content:space-between;
+  margin-top:30px;
+}
+
+button{
+  padding:12px 30px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,#2563eb,#4f46e5);
+  color:white;
+  cursor:pointer;
+}
+
+button:disabled{
+  background:#9ca3af;
+}
+
+.result{
+  margin-top:30px;
+}
+
+.wrong{
+  background:#fee2e2;
+  border-left:6px solid #dc2626;
+  padding:18px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+.correct{
+  background:#dcfce7;
+  border-left:6px solid #16a34a;
+  padding:18px;
+  border-radius:10px;
+}
+
+.explain{
+  font-size:14px;
+  margin-top:6px;
+}
 </style>
 </head>
 
@@ -91,13 +194,13 @@ button:disabled{background:#9ca3af;}
   <nav>
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
-    <div class="profile">
+
+    <div class="profile" id="profileMenu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
-      <span>Student</span>
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
@@ -127,6 +230,24 @@ button:disabled{background:#9ca3af;}
 </div>
 
 <script>
+/* ================= BACKEND ================= */
+const API = "http://127.0.0.1:5000";
+
+fetch(API + "/dashboard", { credentials:"include" })
+.then(res=>{
+  if(res.ok){
+    document.getElementById("profileMenu").style.display="flex";
+  }
+});
+
+function logout(){
+  fetch(API + "/logout", {
+    method:"POST",
+    credentials:"include"
+  }).then(()=>window.location.href="home.html");
+}
+
+/* ================= QUIZ DATA (ALL QUESTIONS INCLUDED) ================= */
 const quiz = [
 {q:"Which statement is used for decision making?",o:["for","if","while"],a:1,e:"if is used for decision making."},
 {q:"Which keyword is used for multiple conditions?",o:["elif","else","then"],a:0,e:"elif is used for multiple conditions."},
@@ -150,7 +271,7 @@ const quiz = [
 {q:"break transfers control to?",o:["next iteration","outside loop","function"],a:1,e:"break exits loop."},
 {q:"pass is mainly used during?",o:["testing","exit","error"],a:0,e:"pass is used during testing."},
 {q:"Which statement stops function execution?",o:["break","return","pass"],a:1,e:"return stops function."},
-{q:"return sends value to?",o:["loop","caller","condition"],a:1,e:"return sends to caller."},
+{q:"return sends value to?",o:["loop","caller","condition"],a:1,e:"return sends value to caller."},
 
 {q:"Which statement can be used without value?",o:["return","break","continue"],a:0,e:"return can be empty."},
 {q:"Which keyword sends output from function?",o:["print","return","pass"],a:1,e:"return sends output."},
@@ -176,32 +297,50 @@ function load(){
   prevBtn.disabled=cur===0;
   nextBtn.innerText=cur===quiz.length-1?"Submit":"Next";
 }
-function selectOpt(i){ans[cur]=i;load();}
+
+function selectOpt(i){
+  ans[cur]=i;
+  load();
+}
+
 function nextQ(){
   if(cur===quiz.length-1){
-    if(ans.includes(null)){alert("Answer all questions");return;}
+    if(ans.includes(null)){
+      alert("Please answer all questions");
+      return;
+    }
     showResult();
-  } else {cur++;load();}
+  } else {
+    cur++;
+    load();
+  }
 }
-function prevQ(){cur--;load();}
+
+function prevQ(){
+  cur--;
+  load();
+}
+
 function showResult(){
-  let score=0,out="";
+  let score=0;
+  let out="";
   quiz.forEach((q,i)=>{
     if(ans[i]===q.a) score++;
     else out+=`
-    <div class="wrong">
-      <strong>Question:</strong> ${q.q}<br>
-      <strong>Your Answer:</strong> ${q.o[ans[i]]}<br>
-      <strong>Correct Answer:</strong> ${q.o[q.a]}
-      <div class="explain"><strong>Explanation:</strong> ${q.e}</div>
-    </div>`;
+      <div class="wrong">
+        <strong>Question:</strong> ${q.q}<br>
+        <strong>Your Answer:</strong> ${q.o[ans[i]]}<br>
+        <strong>Correct Answer:</strong> ${q.o[q.a]}
+        <div class="explain"><strong>Explanation:</strong> ${q.e}</div>
+      </div>`;
   });
   quizArea.style.display="none";
   result.innerHTML=
-    `<h3>Your Score: ${score} / ${quiz.length}</h3>`+
-    (out||`<div class="correct">Excellent! All correct 🎉</div>`) +
+    `<h3>Your Score: ${score} / ${quiz.length}</h3>` +
+    (out || `<div class="correct">Excellent! All answers are correct 🎉</div>`) +
     `<br><button onclick="location.reload()">Restart Quiz</button>`;
 }
+
 load();
 </script>
 
