@@ -1,4 +1,4 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -20,7 +20,7 @@ body{
   color:#1f2937;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   background:white;
   padding:10px 20px;
@@ -52,9 +52,9 @@ nav a:hover{
   color:#2563eb;
 }
 
-/* ===== STUDENT PROFILE ===== */
+/* PROFILE (hidden until login) */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
@@ -67,11 +67,6 @@ nav a:hover{
   border-radius:50%;
 }
 
-.profile span{
-  font-weight:500;
-}
-
-/* DROPDOWN */
 .profile-menu{
   position:absolute;
   top:45px;
@@ -82,27 +77,29 @@ nav a:hover{
   width:170px;
   display:none;
   flex-direction:column;
-  overflow:hidden;
-  z-index:10;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  border:none;
+  background:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
-/* SHOW DROPDOWN */
 .profile:hover .profile-menu{
   display:flex;
 }
 
-/* ================= MAIN ================= */
+/* CONTENT */
 .container{
   max-width:900px;
   margin:50px auto;
@@ -115,10 +112,9 @@ nav a:hover{
 .course-title{
   font-size:28px;
   margin-bottom:25px;
-  color:#111827;
 }
 
-/* TOPIC LIST */
+/* TOPIC */
 .topic{
   padding:16px 20px;
   border:1px solid #e5e7eb;
@@ -154,45 +150,28 @@ nav a:hover{
 .topic button:hover{
   background:#1e40af;
 }
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  header{
-    padding:18px 30px;
-  }
-
-  .container{
-    margin:30px 15px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
-  <h2>Pylearn</h2>
-
+  <h2>PyLearn</h2>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="courses.html">Courses</a>
+    <a href="home.html">Home</a>
+    <a href="course.html">Courses</a>
 
-    <!-- STUDENT PROFILE -->
-    <div class="profile">
-      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
-      <span>Student</span>
-
+    <div class="profile" id="profileMenu">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ================= CONTENT ================= -->
 <div class="container">
   <div class="course-title">Python Programming</div>
 
@@ -206,21 +185,41 @@ nav a:hover{
     <button>View</button>
   </div>
 
-  <div class="topic" onclick="location.href='c-decision.html'">
-    <span>Functions, Arrays, & Strings</span>
+  <div class="topic" onclick="location.href='PythonOperatorsDataTypes.html'">
+    <span>Operators & Data Types</span>
     <button>View</button>
   </div>
 
-  <div class="topic" onclick="location.href='c-structures.html'">
-    <span>Data Structures</span>
+  <div class="topic" onclick="location.href='PythonFunctionsModules.html'">
+    <span>Functions & Modules</span>
     <button>View</button>
   </div>
 
-  <div class="topic" onclick="location.href='c-file.html'">
-    <span>OOP Through Python</span>
+  <div class="topic" onclick="location.href='PythonOOP.html'">
+    <span>OOP Concepts in Python</span>
     <button>View</button>
   </div>
 </div>
+
+<script>
+const API = "http://127.0.0.1:5000";
+
+fetch(API + "/dashboard", { credentials:"include" })
+.then(res=>{
+  if(res.ok){
+    document.getElementById("profileMenu").style.display="flex";
+  }
+});
+
+function logout(){
+  fetch(API + "/logout", {
+    method:"POST",
+    credentials:"include"
+  }).then(()=>{
+    window.location.href="home.html";
+  });
+}
+</script>
 
 </body>
 </html>
