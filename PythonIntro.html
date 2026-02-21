@@ -1,4 +1,4 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -16,18 +16,18 @@
 }
 
 body{
-  background:#f3f6fb;
+  background:#f5f7fb;
   color:#1f2937;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   background:white;
-  padding:18px 20px;
+  padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
 
 header h2{
@@ -38,7 +38,7 @@ header h2{
 nav{
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:25px;
 }
 
 nav a{
@@ -51,9 +51,9 @@ nav a:hover{
   color:#2563eb;
 }
 
-/* ===== STUDENT PROFILE ===== */
+/* PROFILE */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
@@ -66,10 +66,6 @@ nav a:hover{
   border-radius:50%;
 }
 
-.profile span{
-  font-weight:500;
-}
-
 .profile-menu{
   position:absolute;
   top:45px;
@@ -80,18 +76,21 @@ nav a:hover{
   width:170px;
   display:none;
   flex-direction:column;
-  overflow:hidden;
-  z-index:10;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
@@ -99,14 +98,14 @@ nav a:hover{
   display:flex;
 }
 
-/* ================= MAIN ================= */
+/* MAIN */
 .container{
   max-width:1000px;
   margin:50px auto;
   padding:35px;
 }
 
-/* ===== INTRO SECTION ===== */
+/* INTRO */
 .intro-box{
   background:linear-gradient(135deg,#2563eb,#4f46e5);
   color:white;
@@ -117,7 +116,6 @@ nav a:hover{
 
 .intro-box h1{
   font-size:28px;
-  font-weight:700;
   margin-bottom:12px;
 }
 
@@ -127,14 +125,13 @@ nav a:hover{
   opacity:0.95;
 }
 
-/* ===== TOPIC GRID ===== */
+/* TOPICS */
 .topic-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:20px;
 }
 
-/* ===== TOPIC CARD ===== */
 .topic-card{
   background:white;
   border-radius:14px;
@@ -153,12 +150,6 @@ nav a:hover{
 .topic-card h3{
   font-size:18px;
   font-weight:600;
-  margin-bottom:6px;
-}
-
-.topic-card span{
-  font-size:14px;
-  color:#6b7280;
 }
 
 .topic-card::after{
@@ -170,7 +161,7 @@ nav a:hover{
   color:#2563eb;
 }
 
-/* ===== PRACTICE SECTION ===== */
+/* PRACTICE */
 .practice-box{
   margin-top:45px;
   padding:35px;
@@ -181,7 +172,6 @@ nav a:hover{
 
 .practice-box h2{
   font-size:24px;
-  font-weight:700;
   margin-bottom:10px;
 }
 
@@ -206,15 +196,11 @@ nav a:hover{
   background:#1e40af;
 }
 
-/* ===== RESPONSIVE ===== */
+/* RESPONSIVE */
 @media(max-width:600px){
   .container{
     margin:30px 15px;
     padding:20px;
-  }
-
-  .intro-box h1{
-    font-size:24px;
   }
 }
 </style>
@@ -222,7 +208,6 @@ nav a:hover{
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <h2>PyLearn</h2>
 
@@ -230,89 +215,68 @@ nav a:hover{
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile">
-      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
-      <span>Student</span>
-
+    <div class="profile" id="profileMenu">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- ================= CONTENT ================= -->
 <div class="container">
 
   <div class="intro-box">
     <h1>Introduction to Python Programming</h1>
-     <p>
-      Python is a powerful, structured programming language that forms the backbone
-      of modern systems programming. Master these basics before moving to logic,
-      loops, and advanced concepts.
+    <p>
+      Python is a powerful, easy-to-learn programming language widely used in
+      web development, data analysis, automation, and artificial intelligence.
     </p>
   </div>
 
   <div class="topic-grid">
-
-    <div class="topic-card" onclick="location.href='Pythonhistory.html'">
-      <h3>Introduction</h3>
-     
-    </div>
-
-    <div class="topic-card" onclick="location.href='PythonIDLE.html'">
-      <h3>Python IDLE & Program Editor</h3>
-      
-    </div>
-
-     <div class="topic-card" onclick="location.href='Pythonrunning.html'">
-      <h3>Process of Running Python Scripts</h3>
-      
-    </div>
-
-    <div class="topic-card" onclick="location.href='Pythonbasics.html'">
-      <h3>Python Basics</h3>
-      
-    </div>
-
-    <div class="topic-card" onclick="location.href='Pythondatatypes.html'">
-      <h3>Datatypes</h3>
-      
-    </div>
-
-    <div class="topic-card" onclick="location.href='Pythonoperators.html'">
-      <h3>Operators</h3>
-      
-    </div>
-
-    <div class="topic-card" onclick="location.href='PythonIO.html'">
-      <h3>Input Output & Formatted</h3>
-      
-    </div>
-
-    <div class="topic-card" onclick="location.href='Pythonmodulesintro.html'">
-      <h3>Purpose of Modules</h3>
-     
-    </div>
-
-    <div class="topic-card" onclick="location.href='Pythonoperatorspre.html'">
-      <h3>Operator Precedence & Associativity</h3>
-     
-    </div>
-
+    <div class="topic-card" onclick="location.href='Pythonhistory.html'"><h3>Introduction</h3></div>
+    <div class="topic-card" onclick="location.href='PythonIDLE.html'"><h3>Python IDLE & Program Editor</h3></div>
+    <div class="topic-card" onclick="location.href='Pythonrunning.html'"><h3>Running Python Programs</h3></div>
+    <div class="topic-card" onclick="location.href='Pythonbasics.html'"><h3>Python Basics</h3></div>
+    <div class="topic-card" onclick="location.href='Pythondatatypes.html'"><h3>Datatypes</h3></div>
+    <div class="topic-card" onclick="location.href='Pythonoperators.html'"><h3>Operators</h3></div>
+    <div class="topic-card" onclick="location.href='PythonIO.html'"><h3>Input & Output</h3></div>
+    <div class="topic-card" onclick="location.href='Pythonmodulesintro.html'"><h3>Purpose of Modules</h3></div>
+    <div class="topic-card" onclick="location.href='Pythonoperatorspre.html'"><h3>Operator Precedence</h3></div>
   </div>
 
   <div class="practice-box">
     <h2>Practice Test</h2>
     <p>Evaluate your understanding before moving forward.</p>
-    <button onclick="location.href='PythonIntrotest.html'">
-      Start Test
-    </button>
+    <button onclick="location.href='PythonIntrotest.html'">Start Test</button>
   </div>
 
 </div>
+
+<script>
+const API = "http://127.0.0.1:5000";
+
+/* SESSION CHECK */
+fetch(API + "/dashboard", {
+  credentials: "include"
+})
+.then(res => {
+  if(res.ok){
+    document.getElementById("profileMenu").style.display = "flex";
+  }
+});
+
+/* LOGOUT */
+function logout(){
+  fetch(API + "/logout", {
+    method: "POST",
+    credentials: "include"
+  }).then(() => window.location.href = "home.html");
+}
+</script>
 
 </body>
 </html>
