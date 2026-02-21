@@ -1,11 +1,11 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>PyLearn | Python IDLE & Program Editor</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,28 +16,29 @@
 }
 
 body{
-  background:#f3f6fb;
+  background:#f5f7fb;
   color:#1f2937;
 }
 
 /* HEADER */
 header{
   background:white;
-  padding:18px 20px;
+  padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
 
 header h2{
   color:#2563eb;
+  font-weight:700;
 }
 
 nav{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:25px;
 }
 
 nav a{
@@ -46,9 +47,13 @@ nav a{
   font-weight:500;
 }
 
+nav a:hover{
+  color:#2563eb;
+}
+
 /* PROFILE */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
@@ -73,11 +78,20 @@ nav a{
   flex-direction:column;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
+}
+
+.profile-menu a:hover,
+.profile-menu button:hover{
+  background:#f3f4f6;
 }
 
 .profile:hover .profile-menu{
@@ -114,13 +128,13 @@ nav a{
   font-size:15px;
 }
 
-/* CODE */
 pre{
   background:#111827;
   color:#e5e7eb;
   padding:20px;
   border-radius:10px;
   margin-top:10px;
+  overflow:auto;
 }
 
 .output{
@@ -141,14 +155,12 @@ pre{
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile">
+    <div class="profile" id="profileMenu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
-      <span>Student</span>
-
       <div class="profile-menu">
-        <a href="#">My Profile</a>
-        <a href="#">Dashboard</a>
-        <a href="#">Logout</a>
+        <a href="profile.html">My Profile</a>
+        <a href="dashboard.html">Dashboard</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
@@ -162,37 +174,14 @@ pre{
     <h4>What is IDLE?</h4>
     <p>
       IDLE stands for <strong>Integrated Development and Learning Environment</strong>.
-      It is a software tool provided with Python to write, run, debug and test Python programs.
-    </p>
-  </div>
-
-  <div class="section">
-    <h4>Why IDLE is Used?</h4>
-    <p>
-      IDLE helps you write Python code, execute programs,
-      find errors and view output easily in one place.
-    </p>
-  </div>
-
-  <div class="section">
-    <h4>Parts of IDLE</h4>
-    <p>
-      IDLE has two main parts:
-      <br><br>
-      <strong>1. Shell</strong> – Used to execute small programs and see immediate results.
-      It works in interactive mode.
-      <br>
-      <strong>2. Editor</strong> – Used to write, edit and save Python programs.
+      It is a software tool provided with Python to write, run, debug and test programs.
     </p>
   </div>
 
   <div class="section">
     <h4>Python Shell (Interactive Mode)</h4>
-    <pre><code>
->>> print("Hello")
-Hello
-    </code></pre>
-
+<pre><code>>> print("Hello")
+Hello</code></pre>
     <div class="output">
       Output is shown immediately after execution.
     </div>
@@ -201,56 +190,39 @@ Hello
   <div class="section">
     <h4>Program Editor</h4>
     <p>
-      Program Editor is a place where you write Python programs,
-      edit code, debug errors and save files.
-      It is a text editor used to write Python source code.
+      The editor is used to write, save, and execute Python programs in file mode.
     </p>
   </div>
 
   <div class="section">
-    <h4>Example Program (Editor Mode)</h4>
-    <pre><code>
-print("Welcome to Python")
-    </code></pre>
-
+    <h4>Example Program</h4>
+<pre><code>print("Welcome to Python")</code></pre>
     <div class="output">
       Welcome to Python
     </div>
   </div>
 
-  <div class="section">
-    <h4>Language Environment</h4>
-    <p>
-      Language environment helps you understand your code,
-      run the program and view the output properly.
-    </p>
-  </div>
-
-  <div class="section">
-    <h4>How to Check Python IDLE in Your System</h4>
-    <p>
-      Step 1: Click on <strong>Start</strong> button<br>
-      Step 2: Select <strong>All Programs</strong><br>
-      Step 3: Click on <strong>Python</strong><br>
-      Step 4: Open <strong>IDLE</strong>
-    </p>
-  </div>
-
-  <div class="section">
-    <h4>Popular Python IDEs</h4>
-    <p>
-      ✔ PyCharm<br>
-      ✔ Visual Studio Code<br>
-      ✔ Eclipse<br>
-      ✔ Anaconda<br>
-      ✔ Spyder<br>
-      ✔ IDLE<br>
-      ✔ Jupyter Notebook<br>
-      ✔ Jupyter Lab
-    </p>
-  </div>
-
 </div>
+
+<script>
+const API = "http://127.0.0.1:5000";
+
+fetch(API + "/dashboard", {
+  credentials: "include"
+})
+.then(res => {
+  if(res.ok){
+    document.getElementById("profileMenu").style.display = "flex";
+  }
+});
+
+function logout(){
+  fetch(API + "/logout", {
+    method: "POST",
+    credentials: "include"
+  }).then(() => window.location.href = "home.html");
+}
+</script>
 
 </body>
 </html>
