@@ -1,11 +1,11 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PyLearn | Python IDLE & Program Editor</title>
+<title>PyLearn | Python Basics</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,28 +16,29 @@
 }
 
 body{
-  background:#f3f6fb;
+  background:#f5f7fb;
   color:#1f2937;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header{
   background:white;
-  padding:18px 20px;
+  padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
+  box-shadow:0 4px 8px rgba(0,0,0,0.08);
 }
 
 header h2{
   color:#2563eb;
+  font-weight:700;
 }
 
 nav{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:25px;
 }
 
 nav a{
@@ -46,9 +47,13 @@ nav a{
   font-weight:500;
 }
 
-/* PROFILE */
+nav a:hover{
+  color:#2563eb;
+}
+
+/* ===== PROFILE ===== */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
@@ -73,18 +78,27 @@ nav a{
   flex-direction:column;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  background:none;
+  border:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
+}
+
+.profile-menu a:hover,
+.profile-menu button:hover{
+  background:#f3f4f6;
 }
 
 .profile:hover .profile-menu{
   display:flex;
 }
 
-/* CONTENT */
+/* ================= CONTENT ================= */
 .container{
   max-width:900px;
   margin:50px auto;
@@ -121,6 +135,7 @@ pre{
   padding:20px;
   border-radius:10px;
   margin-top:10px;
+  overflow:auto;
 }
 
 .output{
@@ -141,18 +156,17 @@ pre{
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile">
+    <div class="profile" id="profileMenu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
-      <span>Student</span>
-
       <div class="profile-menu">
-        <a href="#">My Profile</a>
-        <a href="#">Dashboard</a>
-        <a href="#">Logout</a>
+        <a href="profile.html">My Profile</a>
+        <a href="dashboard.html">Dashboard</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
 </header>
+
 <div class="container">
 
 <h3>Python Basics</h3>
@@ -161,122 +175,104 @@ pre{
 <div class="section">
 <h4>Identifiers</h4>
 <p>
-Identifiers are names used to identify variables, functions, classes,
-modules, and objects in Python.
+Identifiers are names used to identify variables, modules, classes, and objects in Python.
 </p>
 
-<pre><code>
-total_score = 85
-user_name = "admin"
-calculate_total()
-</code></pre>
+<pre><code>total_score = 85
+user_name = "admin"</code></pre>
 
 <p><strong>Rules for Identifiers:</strong><br>
-✔ Can contain letters, digits, and underscore (_).<br>
-✔ Must start with a letter or underscore.<br>
-✔ Cannot start with a digit.<br>
-✔ Special symbols are not allowed except underscore.<br>
-✔ Keywords cannot be used as identifiers.
+✔ Letters, digits, underscore allowed<br>
+✔ Must start with letter or underscore<br>
+✔ Cannot start with digit<br>
+✔ No special symbols except underscore<br>
+✔ Keywords not allowed
 </p>
 
-<pre><code>
-2total        # ❌ Invalid
-total_2       # ✅ Valid
-total@value   # ❌ Invalid
-</code></pre>
+<pre><code>2total      # ❌ Invalid
+total_2     # ✅ Valid
+total@value # ❌ Invalid</code></pre>
 </div>
 
 <!-- KEYWORDS -->
 <div class="section">
 <h4>Keywords</h4>
 <p>
-Keywords are reserved words in Python that have predefined meanings.
-They cannot be used as variable names or function names.
+Keywords are reserved words with predefined meanings.
+They cannot be used as identifiers.
 </p>
 
-<p>
-All keywords are written in lowercase except
-<strong>True</strong>, <strong>False</strong>, and <strong>None</strong>.
-</p>
-
-<pre><code>
-if user_logged_in:
-    print("Access granted")
-</code></pre>
+<pre><code>if user_logged_in:
+    print("Access granted")</code></pre>
 </div>
 
 <!-- VARIABLES -->
 <div class="section">
 <h4>Variables</h4>
 <p>
-Variables are used to store data values.
-Python does not require explicit variable declaration.
-The data type is automatically determined by the value.
+Variables store data values. Python automatically determines data types.
 </p>
 
-<pre><code>
-user_id = 1024
+<pre><code>user_id = 1024
 username = "developer"
-account_balance = 2500.75
-</code></pre>
+account_balance = 2500.75</code></pre>
 
-<p><strong>Rules for Variables:</strong><br>
-✔ Variables are case-sensitive.<br>
-✔ Must start with a letter or underscore.<br>
-✔ Cannot start with a number.<br>
-✔ Special characters are not allowed except underscore.<br>
-✔ No limit on variable name length.
-</p>
-
-<pre><code>
-status = "active"
+<pre><code>status = "active"
 print(status)   # ✅ Correct
-print(Status)   # ❌ Error
-</code></pre>
+print(Status)   # ❌ Error</code></pre>
 </div>
 
 <!-- INDENTATION -->
 <div class="section">
 <h4>Indentation</h4>
 <p>
-Indentation refers to spaces at the beginning of a line.
-Python uses indentation instead of curly braces to define code blocks.
-By default, Python uses <strong>4 spaces</strong>.
+Indentation defines code blocks in Python.
+Default indentation is 4 spaces.
 </p>
 
-<pre><code>
-if account_balance > 0:
+<pre><code>if account_balance > 0:
     print("Transaction allowed")
-    print("Processing payment")
-</code></pre>
+    print("Processing payment")</code></pre>
 </div>
 
 <!-- COMMENTS -->
 <div class="section">
 <h4>Comments</h4>
 <p>
-Comments are used to explain code logic.
-They improve readability and are ignored by the Python interpreter.
+Comments explain code and improve readability.
 </p>
 
-<p><strong>1. Single-line Comment</strong></p>
-<pre><code>
-# Display welcome message
-print("Welcome to SmartLearn")
-</code></pre>
+<pre><code># Display welcome message
+print("Welcome to PyLearn")</code></pre>
 
-<p><strong>2. Multi-line Comment</strong></p>
-<pre><code>
-'''
+<pre><code>'''
 This program checks user access
-and displays a message accordingly
+and displays a message
 '''
-print("Access granted")
-</code></pre>
-
+print("Access granted")</code></pre>
 </div>
 
 </div>
+
+<script>
+const API = "http://127.0.0.1:5000";
+
+/* SESSION CHECK */
+fetch(API + "/dashboard", { credentials:"include" })
+.then(res=>{
+  if(res.ok){
+    document.getElementById("profileMenu").style.display="flex";
+  }
+});
+
+/* LOGOUT */
+function logout(){
+  fetch(API + "/logout", {
+    method:"POST",
+    credentials:"include"
+  }).then(()=>window.location.href="home.html");
+}
+</script>
 
 </body>
 </html>
