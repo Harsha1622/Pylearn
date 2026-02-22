@@ -20,7 +20,7 @@ body{
   color:#1f2937;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   background:white;
   padding:10px 20px;
@@ -52,9 +52,9 @@ nav a:hover{
   color:#2563eb;
 }
 
-/* ===== PROFILE ===== */
+/* PROFILE */
 .profile{
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
   position:relative;
@@ -79,14 +79,19 @@ nav a:hover{
   flex-direction:column;
 }
 
-.profile-menu a{
+.profile-menu a,
+.profile-menu button{
   padding:12px 15px;
-  text-decoration:none;
-  color:#374151;
+  border:none;
+  background:none;
+  text-align:left;
   font-size:14px;
+  cursor:pointer;
+  color:#374151;
 }
 
-.profile-menu a:hover{
+.profile-menu a:hover,
+.profile-menu button:hover{
   background:#f3f4f6;
 }
 
@@ -94,7 +99,7 @@ nav a:hover{
   display:flex;
 }
 
-/* ================= CONTENT ================= */
+/* CONTENT */
 .container{
   max-width:900px;
   margin:50px auto;
@@ -124,7 +129,7 @@ nav a:hover{
   font-size:15px;
 }
 
-/* CODE BOX */
+/* CODE */
 pre{
   background:#111827;
   color:#e5e7eb;
@@ -139,7 +144,7 @@ code{
   font-size:14px;
 }
 
-/* OUTPUT BOX */
+/* OUTPUT */
 .output{
   background:#f9fafb;
   border:1px solid #d1d5db;
@@ -159,12 +164,12 @@ code{
     <a href="home.html">Home</a>
     <a href="course.html">Courses</a>
 
-    <div class="profile">
+    <div class="profile" id="profileMenu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Student">
       <div class="profile-menu">
         <a href="profile.html">My Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="#">Logout</a>
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
   </nav>
@@ -240,6 +245,26 @@ print(math_module.subtract(10, 5))
   </div>
 
 </div>
+
+<script>
+const API = "http://127.0.0.1:5000";
+
+fetch(API + "/dashboard", { credentials:"include" })
+.then(res=>{
+  if(res.ok){
+    document.getElementById("profileMenu").style.display="flex";
+  }
+});
+
+function logout(){
+  fetch(API + "/logout", {
+    method:"POST",
+    credentials:"include"
+  }).then(()=>{
+    window.location.href="home.html";
+  });
+}
+</script>
 
 </body>
 </html>
