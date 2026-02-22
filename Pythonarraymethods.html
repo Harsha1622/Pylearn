@@ -263,11 +263,11 @@ fetch(API + "/dashboard", {
   if (res.ok) {
     document.getElementById("profile").style.display = "flex";
   } else {
-    window.location.href = "login.html";
+    window.location.href = "home.html";
   }
 })
 .catch(() => {
-  window.location.href = "login.html";
+  window.location.href = "home.html";
 });
 
 /* ===== LOGOUT ===== */
@@ -276,7 +276,7 @@ function logout(){
     method: "POST",
     credentials: "include"
   }).then(() => {
-    window.location.href = "login.html";
+    window.location.href = "home.html";
   });
 }
 </script>
