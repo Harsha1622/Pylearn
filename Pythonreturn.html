@@ -268,10 +268,10 @@ fetch(API + "/dashboard", { credentials: "include" })
   if(res.ok){
     document.getElementById("profile").style.display = "flex";
   }else{
-    window.location.href = "login.html";
+    window.location.href = "home.html";
   }
 })
-.catch(() => window.location.href = "login.html");
+.catch(() => window.location.href = "home.html");
 
 /* LOGOUT */
 function logout(){
@@ -279,7 +279,7 @@ function logout(){
     method: "POST",
     credentials: "include"
   }).then(() => {
-    window.location.href = "login.html";
+    window.location.href = "home.html";
   });
 }
 </script>
