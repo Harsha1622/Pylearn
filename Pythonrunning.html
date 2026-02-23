@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+   
 <style>
 *{
   margin:0;
@@ -151,6 +151,33 @@ code{
   margin-top:10px;
   font-family:Consolas, monospace;
 }
+  .page-nav{
+  margin-top:40px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.nav-btn{
+  text-decoration:none;
+  padding:12px 24px;
+  border-radius:8px;
+  font-weight:500;
+  font-size:15px;
+  text-align:center;
+  min-width:140px;
+}
+
+.nav-btn.primary{
+  background:#2563eb;
+  color:white;
+}
+
+.nav-btn.secondary{
+  border:1px solid #2563eb;
+  color:#2563eb;
+}
 </style>
 </head>
 
@@ -169,6 +196,10 @@ code{
         <a href="dashboard.html">Dashboard</a>
         <button onclick="logout()">Logout</button>
       </div>
+      <div class="page-nav">
+  <a href="PythonIDLE.html" class="nav-btn secondary">← Previous</a>
+  <a href="Pythonbasics.html" class="nav-btn primary">Next →</a>
+</div>
     </div>
   </nav>
 </header>
