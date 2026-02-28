@@ -317,18 +317,47 @@ function prevQ(){
 }
 
 function showResult(){
-  let score=0;
-  let out="";
+
+  let score = 0;
+  let out = "";
+
   quiz.forEach((q,i)=>{
-    if(ans[i]===q.a) score++;
-    else out+=`
-      <div class="wrong">
-        <strong>Question:</strong> ${q.q}<br>
-        <strong>Your Answer:</strong> ${q.o[ans[i]]}<br>
-        <strong>Correct Answer:</strong> ${q.o[q.a]}
-        <div class="explain"><strong>Explanation:</strong> ${q.e}</div>
-      </div>`;
+    if(ans[i] === q.a) score++;
+    else out += `
+    <div class="wrong">
+      <strong>Question:</strong> ${q.q}<br>
+      <strong>Your Answer:</strong> ${q.o[ans[i]]}<br>
+      <strong>Correct Answer:</strong> ${q.o[q.a]}
+      <div class="explain"><strong>Explanation:</strong> ${q.e}</div>
+    </div>`;
   });
+
+  // 🔥 SAVE QUIZ TO BACKEND
+  fetch("http://127.0.0.1:5000/save-quiz", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({
+      quiz_name: "Functions and Modules",
+      score: score,
+      total: quiz.length
+    })
+  })
+  .then(res => {
+    if(!res.ok){
+      console.log("Quiz not saved. User may not be logged in.");
+    }
+  })
+  .catch(err => console.log("Error saving quiz:", err));
+
+  // 🔥 SHOW RESULT ON SCREEN
+  quizArea.style.display = "none";
+
+  result.innerHTML =
+    `<h3>Your Score: ${score} / ${quiz.length}</h3>` +
+    (out || `<div class="correct">Excellent! All answers correct 🎉</div>`) +
+    `<br><button onclick="location.reload()">Restart Quiz</button>`;
+}
   quizArea.style.display="none";
   result.innerHTML=
     `<h3>Your Score: ${score} / ${quiz.length}</h3>` +
