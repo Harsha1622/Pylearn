@@ -159,6 +159,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
+      full_name: fullname.value,
       email: email.value,
       password: password.value
     })
